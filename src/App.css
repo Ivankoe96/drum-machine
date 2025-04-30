@@ -1,0 +1,161 @@
+/* src/App.css */
+
+/* Basic body styling */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #2b3a42, #1a2229); /* Gradient background */
+  color: #e0e0e0; /* Light text color */
+  font-family: 'Arial', sans-serif; /* Simple fallback font */
+  min-height: 100vh;
+  display: flex; /* Use flexbox to center the drum machine */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Outer container for the drum machine */
+#drum-machine {
+  background-color: #334a52; /* Darker background for the machine */
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+  display: flex; /* Arrange pad bank and controls */
+  flex-direction: column; /* Stack them vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Space between sections */
+  max-width: 600px; /* Limit max width */
+  width: 95%; /* Responsive width */
+}
+
+/* Display element */
+#display {
+  background-color: #1a2229; /* Very dark background for display */
+  color: #00ff00; /* Neon green text */
+  font-family: 'Consolas', monospace; /* Monospaced font for display */
+  font-size: 1.2em;
+  padding: 15px 20px;
+  border-radius: 8px;
+  min-height: 1.5em; /* Ensure minimum height */
+  text-align: center;
+  width: 80%; /* Width relative to drum machine */
+  word-wrap: break-word; /* Prevent long text overflow */
+}
+
+/* Container for the drum pads */
+.pad-bank {
+  display: grid; /* Use grid for the 3x3 layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns, equal width */
+  gap: 15px; /* Space between pads */
+  width: 100%; /* Take full width of drum machine */
+}
+
+/* Individual drum pad elements */
+.drum-pad {
+  background-color: #61afef; /* Blue color */
+  color: #1a2229; /* Dark text */
+  border-radius: 10px;
+  aspect-ratio: 1 / 1; /* Make pads square */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
+  transition: background-color 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Drum pad hover effect */
+.drum-pad:hover {
+  background-color: #52a2e0; /* Slightly darker blue on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Drum pad active effect (when clicked or key pressed) */
+.drum-pad:active {
+  background-color: #3a8cdb; /* Even darker blue when active */
+  transform: scale(0.95); /* Slightly shrink the pad */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Hide the actual audio elements - they don't need visual styling */
+.clip {
+  display: none;
+}
+
+/* Container for controls (display and volume) */
+.controls {
+    display: flex;
+    flex-direction: column; /* Stack display and volume vertically */
+    align-items: center; /* Center controls horizontally */
+    gap: 15px; /* Space between display and volume */
+    width: 100%; /* Take full width */
+}
+
+/* Volume slider styling */
+/* Base styling for the range input */
+input[type="range"] {
+  -webkit-appearance: none; /* Remove default webkit appearance */
+  appearance: none; /* Remove default appearance */
+  width: 80%; /* Width relative to controls container */
+  height: 8px; /* Height of the slider track */
+  background: #4f6b7a; /* Track color */
+  outline: none; /* Remove outline */
+  border-radius: 4px;
+  transition: opacity .2s;
+}
+
+/* Slider thumb styling (the draggable part) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default webkit appearance */
+  appearance: none; /* Remove default appearance */
+  width: 20px; /* Thumb size */
+  height: 20px; /* Thumb size */
+  background: #00ff00; /* Neon green thumb */
+  cursor: pointer;
+  border-radius: 50%; /* Make thumb round */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px; /* Thumb size */
+  height: 20px; /* Thumb size */
+  background: #00ff00; /* Neon green thumb */
+  cursor: pointer;
+  border-radius: 50%; /* Make thumb round */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Add a label for the volume slider in your HTML */
+.volume-label {
+    font-size: 0.9em;
+    color: #abb2bf; /* Light gray color */
+}
+
+
+/* Media query for larger screens to potentially adjust layout */
+@media (min-width: 768px) {
+  #drum-machine {
+    flex-direction: row; /* Arrange pad bank and controls side-by-side */
+    align-items: flex-start; /* Align items to the top */
+    gap: 40px; /* Increase space */
+  }
+
+  .pad-bank {
+      width: 60%; /* Pad bank takes more space */
+  }
+
+  .controls {
+      width: 40%; /* Controls take less space */
+      align-items: center; /* Center controls content again */
+      padding-top: 20px; /* Add some top padding to align with pads */
+  }
+
+   #display {
+       width: 90%; /* Adjust display width in controls */
+   }
+
+   input[type="range"] {
+       width: 90%; /* Adjust slider width in controls */
+   }
+}
